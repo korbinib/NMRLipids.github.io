@@ -1,0 +1,9 @@
+.. _APIfunctions:
+
+NMRlipids databank API functions
+======================
+
+.. automodule:: databankLibrary
+   :members:
+   :undoc-members:
+   :show-inheritance:

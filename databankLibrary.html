@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NMRlipids databank API functions &mdash; NMRlipids databank 4.9.2023 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=10ee5b61"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples and tutorials" href="exampleAndTutorials.html" />
+    <link rel="prev" title="Universal molecule and atom names" href="moleculesAndMapping.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NMRlipids databank
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="listOfFiles.html">List and descriptions of NMRlipids databank files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="READMEcontent.html">User input and content of README.yaml files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addingData.html">Adding simulations into the NMRlipids databank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="addingExpData.html">Adding experimental data in the NMRlipids databank</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moleculesAndMapping.html">Universal molecule and atom names</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NMRlipids databank API functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.initialize_databank"><code class="docutils literal notranslate"><span class="pre">initialize_databank()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.print_README"><code class="docutils literal notranslate"><span class="pre">print_README()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.CalcAreaPerMolecule"><code class="docutils literal notranslate"><span class="pre">CalcAreaPerMolecule()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.GetThickness"><code class="docutils literal notranslate"><span class="pre">GetThickness()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.ShowEquilibrationTimes"><code class="docutils literal notranslate"><span class="pre">ShowEquilibrationTimes()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.GetNlipids"><code class="docutils literal notranslate"><span class="pre">GetNlipids()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.plotSimulation"><code class="docutils literal notranslate"><span class="pre">plotSimulation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.read_mapping_file"><code class="docutils literal notranslate"><span class="pre">read_mapping_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.ShowTable"><code class="docutils literal notranslate"><span class="pre">ShowTable()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.calc_z_dim"><code class="docutils literal notranslate"><span class="pre">calc_z_dim()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.read_trj_PN_angles"><code class="docutils literal notranslate"><span class="pre">read_trj_PN_angles()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.resolve_doi_url"><code class="docutils literal notranslate"><span class="pre">resolve_doi_url()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.resolve_download_file_url"><code class="docutils literal notranslate"><span class="pre">resolve_download_file_url()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.download_resource_from_uri"><code class="docutils literal notranslate"><span class="pre">download_resource_from_uri()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.YamlBadConfigException"><code class="docutils literal notranslate"><span class="pre">YamlBadConfigException</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#databankLibrary.parse_valid_config_settings"><code class="docutils literal notranslate"><span class="pre">parse_valid_config_settings()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exampleAndTutorials.html">Examples and tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NMRlipids databank</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">NMRlipids databank API functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/databankLibrary.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nmrlipids-databank-api-functions">
+<span id="apifunctions"></span><h1>NMRlipids databank API functions<a class="headerlink" href="#nmrlipids-databank-api-functions" title="Link to this heading"></a></h1>
+<dl class="py function" id="module-databankLibrary">
+<dt class="sig sig-object py" id="databankLibrary.initialize_databank">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">initialize_databank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">databankPath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#initialize_databank"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.initialize_databank" title="Link to this definition"></a></dt>
+<dd><p>Intializes the NMRlipids databank.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>databankPath</strong> – path for the local location of the NMRlipids databank, for example <code class="docutils literal notranslate"><span class="pre">../../Databank</span></code></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of dictionaries that contain the content of README.yaml files for each system.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.print_README">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">print_README</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#print_README"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.print_README" title="Link to this definition"></a></dt>
+<dd><p>Prints the content of <code class="docutils literal notranslate"><span class="pre">system</span></code> dictionary in human readable format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system</strong> – NMRlipids databank dictionary defining a simulation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.CalcAreaPerMolecule">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">CalcAreaPerMolecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#CalcAreaPerMolecule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.CalcAreaPerMolecule" title="Link to this definition"></a></dt>
+<dd><p>Calculates average area per lipid for a simulation defined with <code class="docutils literal notranslate"><span class="pre">system</span></code>.
+It is using the <code class="docutils literal notranslate"><span class="pre">apl.json</span></code> file where area per lipid as a function of time calculated by the <code class="docutils literal notranslate"><span class="pre">calcAPL.py</span></code> is stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system</strong> – NMRlipids databank dictionary defining a simulation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.GetThickness">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">GetThickness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#GetThickness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.GetThickness" title="Link to this definition"></a></dt>
+<dd><p>Gets thickness for a simulation defined with <code class="docutils literal notranslate"><span class="pre">system</span></code> from the <code class="docutils literal notranslate"><span class="pre">thickness.json</span></code> file
+where thickness calculated by the <code class="docutils literal notranslate"><span class="pre">calc_thickness.py</span></code> is stored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system</strong> – NMRlipids databank dictionary defining a simulation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.ShowEquilibrationTimes">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">ShowEquilibrationTimes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#ShowEquilibrationTimes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.ShowEquilibrationTimes" title="Link to this definition"></a></dt>
+<dd><p>Prints relative equilibration time for each lipid within a simulation defined by <code class="docutils literal notranslate"><span class="pre">system</span></code>.
+Relative equilibration times are calculated with <code class="docutils literal notranslate"><span class="pre">NMRPCA_timerelax.py</span></code> and stored in <code class="docutils literal notranslate"><span class="pre">eq_times.json</span></code> files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system</strong> – NMRlipids databank dictionary defining a simulation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.GetNlipids">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">GetNlipids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#GetNlipids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.GetNlipids" title="Link to this definition"></a></dt>
+<dd><p>Returns the total number of lipids in a simulation defined by <code class="docutils literal notranslate"><span class="pre">system</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>system</strong> – NMRlipids databank dictionary defining a simulation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.plotSimulation">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">plotSimulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lipid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#plotSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.plotSimulation" title="Link to this definition"></a></dt>
+<dd><p>Creates plots of form factor and C-H bond order parameters for the selected <code class="docutils literal notranslate"><span class="pre">lipid</span></code> from a simulation with the given <code class="docutils literal notranslate"><span class="pre">ID</span></code> number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ID</strong> – NMRlipids databank ID number of the simulation</p></li>
+<li><p><strong>lipid</strong> – universal molecul name of the lipid</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.read_mapping_file">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">read_mapping_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapping_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#read_mapping_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.read_mapping_file" title="Link to this definition"></a></dt>
+<dd><p>Get force field specific atom name corresponding to universal atom name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mapping_file</strong> – path for the mapping file</p></li>
+<li><p><strong>atom1</strong> – universal atom name</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.ShowTable">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">ShowTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SortedQualities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quality</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#ShowTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.ShowTable" title="Link to this definition"></a></dt>
+<dd><p>Shows a table of simulation qualities against experimental data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>SortedQualities</strong> – list of dictionaries to be shown, available in folder <code class="docutils literal notranslate"><span class="pre">Data/Ranking/</span></code></p></li>
+<li><p><strong>quality</strong> – should be either <code class="docutils literal notranslate"><span class="pre">TotalQuality</span></code> or universal lipid name. First one shows the system total quality. Latter shows the individual lipid quality.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.calc_z_dim">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">calc_z_dim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gro</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#calc_z_dim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.calc_z_dim" title="Link to this definition"></a></dt>
+<dd><p>Returns the simulation box dimension in z-direction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>gro</strong> – coordinate in <code class="docutils literal notranslate"><span class="pre">gro</span></code>, <code class="docutils literal notranslate"><span class="pre">pdb</span></code> or corresponding format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.read_trj_PN_angles">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">read_trj_PN_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_fname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#read_trj_PN_angles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.read_trj_PN_angles" title="Link to this definition"></a></dt>
+<dd><p>Calculates the P-N vector angles with respect to membrane normal. More documentation should be added.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.resolve_doi_url">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">resolve_doi_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/databankLibrary.html#resolve_doi_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.resolve_doi_url" title="Link to this definition"></a></dt>
+<dd><p>Returns full doi link of given ressource, also checks if URL is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doi</strong> (<em>str</em>) – [doi] part from config</p></li>
+<li><p><strong>validate_uri</strong> (<em>bool</em><em>, </em><em>optional</em>) – Check if URL is valid. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>full doi link</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.resolve_download_file_url">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">resolve_download_file_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fi_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/databankLibrary.html#resolve_download_file_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.resolve_download_file_url" title="Link to this definition"></a></dt>
+<dd><p>Resolve file URI from supported DOI with given filename</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doi</strong> (<em>str</em>) – DOI string</p></li>
+<li><p><strong>fi_name</strong> (<em>str</em>) – name of the file to resolve from source</p></li>
+<li><p><strong>validate_uri</strong> (<em>bool</em><em>, </em><em>optional</em>) – Check if URI exists. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>NotImplementedError</strong> – Unsupported DOI repository</p></li>
+<li><p><strong>HTTPError</strong> – HTTP Error Status Code</p></li>
+<li><p><strong>URLError</strong> – Failed to reach the server</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>file URI</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.download_resource_from_uri">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">download_resource_from_uri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">override_if_exists</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/databankLibrary.html#download_resource_from_uri"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.download_resource_from_uri" title="Link to this definition"></a></dt>
+<dd><p>Download file resource [from uri] to given file destination using urllib</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uri</strong> (<em>str</em>) – file URL</p></li>
+<li><p><strong>dest</strong> (<em>str</em>) – file destination path</p></li>
+<li><p><strong>override_if_exists</strong> (<em>bool</em><em>, </em><em>optional</em>) – Override dest. file if exists. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – HTTPException: An error occured during download</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="databankLibrary.YamlBadConfigException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">YamlBadConfigException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#YamlBadConfigException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.YamlBadConfigException" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Custom Exception class for parsing the yaml configuration</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="databankLibrary.parse_valid_config_settings">
+<span class="sig-prename descclassname"><span class="pre">databankLibrary.</span></span><span class="sig-name descname"><span class="pre">parse_valid_config_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">info_yaml:</span> <span class="pre">dict)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'dict'&gt;,</span> <span class="pre">typing.List[str]</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/databankLibrary.html#parse_valid_config_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#databankLibrary.parse_valid_config_settings" title="Link to this definition"></a></dt>
+<dd><p>Parses, validates and updates dict entries from yaml configuration file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>info_yaml</strong> (<em>dict</em>) – info.yaml of database to add</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>KeyError</strong> – Missing required key in info.yaml</p></li>
+<li><p><a class="reference internal" href="#databankLibrary.YamlBadConfigException" title="databankLibrary.YamlBadConfigException"><strong>YamlBadConfigException</strong></a> – Incorrect or incompatible configuration</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>updated sim dict
+list[str]: list of filenames to download</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="moleculesAndMapping.html" class="btn btn-neutral float-left" title="Universal molecule and atom names" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exampleAndTutorials.html" class="btn btn-neutral float-right" title="Examples and tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Samuli Ollila.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
