@@ -254,6 +254,18 @@
         <span class="s2">&quot;REQUIRED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
     <span class="p">},</span>
+    <span class="s2">&quot;SM18&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;REQUIRED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;TOCL&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;REQUIRED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;GM1&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;REQUIRED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
 <span class="p">}</span>
 
 
@@ -437,6 +449,18 @@
         <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
     <span class="p">},</span>
     <span class="s2">&quot;FFSM16&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;REQUIRED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;FFSM18&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;REQUIRED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;FFTOCL&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;REQUIRED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;FFGM1&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;REQUIRED&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s2">&quot;TYPE&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
     <span class="p">},</span>
@@ -949,17 +973,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">systems</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__load_systems__</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Databank initialized from the folder:&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">__load_systems__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">subdir</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
                 <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subdir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-                <span class="c1"># print(filepath)</span>
+                <span class="c1">#print(filepath)</span>
                 <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s2">&quot;README.yaml&quot;</span><span class="p">:</span>
                     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_file</span><span class="p">:</span>
                         <span class="n">content</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">yaml_file</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
                         <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-                        <span class="n">content</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filepath</span><span class="p">[:</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">11</span><span class="p">]</span>
+                        <span class="n">sizePath</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                        <span class="n">content</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filepath</span><span class="p">[</span><span class="n">sizePath</span> <span class="p">:</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">11</span><span class="p">]</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">systems</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_systems</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1026,8 +1052,10 @@
 <span class="sd">    It is using the ``apl.json`` file where area per lipid as a function of time calculated by the ``calcAPL.py`` is stored. </span>
 
 <span class="sd">    :param system: NMRlipids databank dictionary defining a simulation.</span>
+
+<span class="sd">    :return: area per lipid (Å^2)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">APLpath</span> <span class="o">=</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;apl.json&#39;</span>
+    <span class="n">APLpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/../../Data/Simulations/&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;apl.json&#39;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">APLpath</span><span class="p">)</span>
         <span class="n">APLdata</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -1039,7 +1067,7 @@
         <span class="n">APL</span> <span class="o">=</span> <span class="n">sumAPL</span><span class="o">/</span><span class="n">sumIND</span>
         <span class="k">return</span><span class="p">(</span><span class="n">APL</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;apl.json not found from&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span></div>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;apl.json not found from&#39;</span> <span class="o">+</span> <span class="n">APLpath</span><span class="p">)</span></div>
 
         
 
@@ -1051,8 +1079,10 @@
 <span class="sd">    where thickness calculated by the ``calc_thickness.py`` is stored. </span>
 
 <span class="sd">    :param system: NMRlipids databank dictionary defining a simulation.</span>
+
+<span class="sd">    :return: membrane thickess (nm)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ThicknessPath</span> <span class="o">=</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;thickness.json&#39;</span>
+    <span class="n">ThicknessPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/../../Data/Simulations/&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;thickness.json&#39;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">ThicknessPath</span><span class="p">)</span>
         <span class="n">thickness</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -1073,7 +1103,7 @@
 <span class="sd">    :param system: NMRlipids databank dictionary defining a simulation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="n">EqTimesPath</span> <span class="o">=</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;eq_times.json&#39;</span>
+    <span class="n">EqTimesPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/../../Data/Simulations/&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;eq_times.json&#39;</span>
     
     <span class="k">try</span><span class="p">:</span>
         <span class="c1">#if (os.path.isfile(EqTimesPath)):</span>
@@ -1094,6 +1124,8 @@
 <span class="sd">    Returns the total number of lipids in a simulation defined by ``system``. </span>
 
 <span class="sd">    :param system: NMRlipids databank dictionary defining a simulation.</span>
+
+<span class="sd">    :return: the total number of lipids in the ``system``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">Nlipid</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">]:</span>
@@ -1101,6 +1133,41 @@
             <span class="n">Nlipid</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">molecule</span><span class="p">][</span><span class="s1">&#39;COUNT&#39;</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">Nlipid</span></div>
 
+
+<div class="viewcode-block" id="getLipids">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.getLipids">[docs]</a>
+<span class="k">def</span> <span class="nf">getLipids</span><span class="p">(</span><span class="n">system</span><span class="p">,</span> <span class="n">molecules</span><span class="o">=</span><span class="n">lipids_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a string using MDAnalysis notation that can used to select all lipids from the ``system``.</span>
+
+<span class="sd">    :param system: NMRlipids databank dictionary defining a simulation.</span>
+
+<span class="sd">    :return: a string using MDAnalysis notation that can used to select all lipids from the ``system``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lipids</span> <span class="o">=</span> <span class="s1">&#39;resname &#39;</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">molecules</span><span class="p">:</span>
+            <span class="n">m_file</span> <span class="o">=</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;MAPPING&#39;</span><span class="p">]</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../../Databank/Scripts/BuildDatabank/mapping_files/&#39;</span><span class="o">+</span><span class="n">m_file</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_file</span><span class="p">:</span>
+                <span class="n">mapping_dict</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">yaml_file</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+                <span class="c1">#for line in f:</span>
+                <span class="c1">#    if len(line.split()) &gt; 2 and &quot;Individual atoms&quot; not in line:</span>
+            <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">mapping_dict</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">mapping_dict</span><span class="p">[</span><span class="n">atom</span><span class="p">])</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c1">#        if line.split()[2] not in lipids:</span>
+                    <span class="n">lipids</span> <span class="o">=</span> <span class="n">lipids</span> <span class="o">+</span> <span class="n">mapping_dict</span><span class="p">[</span><span class="n">atom</span><span class="p">][</span><span class="s1">&#39;RESIDUE&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; or resname &#39;</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">lipids</span> <span class="o">=</span> <span class="n">lipids</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;NAME&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; or resname &#39;</span>
+                    <span class="k">break</span>
+                    <span class="c1">#continue</span>
+                    <span class="c1">#else:</span>
+
+                 
+    <span class="n">lipids</span> <span class="o">=</span> <span class="n">lipids</span><span class="p">[:</span><span class="o">-</span><span class="mi">12</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lipids</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lipids</span></div>
 
 
         
@@ -1274,7 +1341,7 @@
     <span class="n">my_xticks</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="se">\u03B3</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\u03B2</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\u03B1</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;$g_</span><span class="si">{1}</span><span class="s1">$&#39;</span><span class="p">,</span><span class="s1">&#39;$g_</span><span class="si">{2}</span><span class="s1">$&#39;</span><span class="p">,</span><span class="s1">&#39;$g_</span><span class="si">{3}</span><span class="s1">$&#39;</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">my_xticks</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="c1">#plt.xlabel(&#39;Carbon&#39;)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.25</span><span class="p">])</span>
+    <span class="c1">#plt.ylim([-0.25,0.25])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="c1">#plt.yticks(color = &#39;w&#39;)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S_</span><span class="si">{CH}</span><span class="s1">$&#39;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
@@ -1292,7 +1359,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="c1">#plt.yticks(color = &#39;w&#39;)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.01</span><span class="p">])</span>
+    <span class="c1">#plt.ylim([-0.3,0.01])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sn-1.pdf&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     
@@ -1307,7 +1374,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
     <span class="c1">#plt.yticks(color = &#39;w&#39;)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.01</span><span class="p">])</span>
+    <span class="c1">#plt.ylim([-0.25,0.01])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sn-2.pdf&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
@@ -1322,13 +1389,13 @@
 <span class="sd">    :param lipid: universal molecul name of the lipid</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">DataBankPath</span> <span class="o">=</span> <span class="s1">&#39;../../Databank/Data/&#39;</span>
-    <span class="n">systems</span> <span class="o">=</span> <span class="n">initialize_databank</span><span class="p">(</span><span class="n">DataBankPath</span> <span class="o">+</span> <span class="s1">&#39;../&#39;</span><span class="p">)</span>
+    <span class="n">DataBankPath</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/../../&#39;</span>
+    <span class="n">systems</span> <span class="o">=</span> <span class="n">initialize_databank</span><span class="p">(</span><span class="n">DataBankPath</span><span class="p">)</span>
     <span class="c1">#print(systems)</span>
     <span class="k">for</span> <span class="n">system</span> <span class="ow">in</span> <span class="n">systems</span><span class="p">:</span>
         <span class="c1">#print(system)</span>
         <span class="k">if</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">ID</span><span class="p">:</span>
-             <span class="n">path</span> <span class="o">=</span> <span class="n">DataBankPath</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
+             <span class="n">path</span> <span class="o">=</span> <span class="n">DataBankPath</span> <span class="o">+</span> <span class="s1">&#39;Data/Simulations/&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
     <span class="c1">#lipid = &#39;POPC&#39;</span>
     <span class="n">FFpathSIM</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;FormFactor.json&#39;</span>
     <span class="n">OPpathSIM</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="n">lipid</span> <span class="o">+</span> <span class="s1">&#39;OrderParameters.json&#39;</span>
@@ -1345,7 +1412,7 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">FFQualityFilePath</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
             <span class="n">FFq</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Form factor quality: &#39;</span><span class="p">,</span> <span class="n">FFq</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">for</span> <span class="n">subdir</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">DataBankPath</span> <span class="o">+</span> <span class="s1">&#39;experiments/FormFactors/&#39;</span> <span class="o">+</span> <span class="n">readme</span><span class="p">[</span><span class="s1">&#39;EXPERIMENT&#39;</span><span class="p">][</span><span class="s1">&#39;FORMFACTOR&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">subdir</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">DataBankPath</span> <span class="o">+</span> <span class="s1">&#39;Data/experiments/FormFactors/&#39;</span> <span class="o">+</span> <span class="n">readme</span><span class="p">[</span><span class="s1">&#39;EXPERIMENT&#39;</span><span class="p">][</span><span class="s1">&#39;FORMFACTOR&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
                 <span class="c1">#filepath = &#39;../../Data/experiments/FormFactors/&#39; + expFFpath + &#39;/&#39; + filename</span>
                 <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;_FormFactor.json&#39;</span><span class="p">):</span>
@@ -1364,7 +1431,7 @@
     <span class="n">OPexp</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">expOPfolder</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">readme</span><span class="p">[</span><span class="s1">&#39;EXPERIMENT&#39;</span><span class="p">][</span><span class="s1">&#39;ORDERPARAMETER&#39;</span><span class="p">][</span><span class="n">lipid</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
         <span class="c1">#expOPfolder = list(readme[&#39;EXPERIMENT&#39;][&#39;ORDERPARAMETER&#39;][lipid].values())[0]</span>
-        <span class="n">OPpathEXP</span> <span class="o">=</span>  <span class="n">DataBankPath</span> <span class="o">+</span> <span class="s1">&#39;experiments/OrderParameters/&#39;</span> <span class="o">+</span> <span class="n">expOPfolder</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">lipid</span> <span class="o">+</span> <span class="s1">&#39;_Order_Parameters.json&#39;</span>
+        <span class="n">OPpathEXP</span> <span class="o">=</span>  <span class="n">DataBankPath</span> <span class="o">+</span> <span class="s1">&#39;Data/experiments/OrderParameters/&#39;</span> <span class="o">+</span> <span class="n">expOPfolder</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">lipid</span> <span class="o">+</span> <span class="s1">&#39;_Order_Parameters.json&#39;</span>
         <span class="c1">#print(OPpathEXP)</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OPpathEXP</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
             <span class="n">OPexp</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">))</span>
@@ -1385,15 +1452,39 @@
     <span class="c1">#print(OPexp)</span>
 
         
-<div class="viewcode-block" id="read_mapping_file">
-<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.read_mapping_file">[docs]</a>
-<span class="k">def</span> <span class="nf">read_mapping_file</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="n">atom1</span><span class="p">):</span>
+<div class="viewcode-block" id="simulation2universal_atomnames">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.simulation2universal_atomnames">[docs]</a>
+<span class="k">def</span> <span class="nf">simulation2universal_atomnames</span><span class="p">(</span><span class="n">system</span><span class="p">,</span><span class="n">molecule</span><span class="p">,</span><span class="n">atom</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Get force field specific atom name corresponding to universal atom name.</span>
+<span class="sd">    Get force field specific atom name corresponding to universal atom name from the ``system``.</span>
 
 <span class="sd">    :param mapping_file: path for the mapping file</span>
 <span class="sd">    :param atom1: universal atom name</span>
 
+<span class="sd">    :return: force field specific atom name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mapping_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/mapping_files/&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">molecule</span><span class="p">][</span><span class="s1">&#39;MAPPING&#39;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mapping_file</span><span class="p">:</span>
+        <span class="n">mapping</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">m_atom1</span> <span class="o">=</span> <span class="n">mapping</span><span class="p">[</span><span class="n">atom</span><span class="p">][</span><span class="s2">&quot;ATOMNAME&quot;</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span> <span class="s1">&#39; was not found from &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">))</span>
+            <span class="k">return</span>   
+    <span class="k">return</span> <span class="n">m_atom1</span></div>
+
+
+<div class="viewcode-block" id="read_mapping_file">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.read_mapping_file">[docs]</a>
+<span class="k">def</span> <span class="nf">read_mapping_file</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="n">atom1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get force field specific atom name corresponding to universal atom name from the mapping file.</span>
+
+<span class="sd">    :param mapping_file: path for the mapping file</span>
+<span class="sd">    :param atom1: universal atom name</span>
+
+<span class="sd">    :return: force field specific atom name</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mapping_file</span><span class="p">:</span>
         <span class="n">mapping</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
@@ -1401,36 +1492,73 @@
     <span class="k">return</span> <span class="n">m_atom1</span></div>
 
 
+<div class="viewcode-block" id="loadMappingFile">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.loadMappingFile">[docs]</a>
+<span class="k">def</span> <span class="nf">loadMappingFile</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Load mapping file into a dictionary</span>
 
-<span class="k">def</span> <span class="nf">read_mapping_filePAIR</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="n">atom1</span><span class="p">,</span> <span class="n">atom2</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    :meta private:</span>
+<span class="sd">    :param: name of the mapping file</span>
 <span class="sd">    </span>
-<span class="sd">    Return mapping names of pair of atoms from mapping file</span>
-
-<span class="sd">    :param mapping_file: path for the mapping file</span>
-<span class="sd">    :param atom1: universal atom name</span>
-<span class="sd">    :param atom2: universal atom name</span>
+<span class="sd">    :return: mapping dictionary</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mapping_file</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mapping_file</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">atom1</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-                <span class="n">m_atom1</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="c1">#                    print(m_atom1)</span>
-            <span class="k">if</span> <span class="n">atom2</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-                <span class="n">m_atom2</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="c1">#                    print(m_atom2)</span>
-    <span class="k">return</span> <span class="n">m_atom1</span><span class="p">,</span> <span class="n">m_atom2</span>
+    <span class="n">mapping_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/mapping_files/&#39;</span> <span class="o">+</span> <span class="n">mapping_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">yaml_file</span><span class="p">:</span>
+        <span class="n">mapping_dict</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">yaml_file</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+    <span class="n">yaml_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">mapping_dict</span></div>
 
 
-<span class="k">def</span> <span class="nf">read_mapping_file_res</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="n">atom1</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;:meta private:&quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">mapping_file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mapping_file</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mapping_file</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">atom1</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-                <span class="n">m_res</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">m_res</span>
+<div class="viewcode-block" id="getAtoms">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.getAtoms">[docs]</a>
+<span class="k">def</span> <span class="nf">getAtoms</span><span class="p">(</span><span class="n">system</span><span class="p">,</span> <span class="n">lipid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return system specific atom names of a lipid</span>
+
+<span class="sd">    :param system: system dictionary</span>
+<span class="sd">    :param lipid: universal lipid name</span>
+
+<span class="sd">    :return: string of system specific atom names</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">atoms</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">path_to_mapping_file</span> <span class="o">=</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">lipid</span><span class="p">][</span><span class="s1">&#39;MAPPING&#39;</span><span class="p">]</span>
+    <span class="n">mapping_dict</span> <span class="o">=</span> <span class="n">loadMappingFile</span><span class="p">(</span><span class="n">path_to_mapping_file</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">mapping_dict</span><span class="p">:</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="n">atoms</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">mapping_dict</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;ATOMNAME&#39;</span><span class="p">]</span>
+  
+    <span class="k">return</span> <span class="n">atoms</span></div>
+
+
+<div class="viewcode-block" id="getUniversalAtomName">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.getUniversalAtomName">[docs]</a>
+<span class="k">def</span> <span class="nf">getUniversalAtomName</span><span class="p">(</span><span class="n">system</span><span class="p">,</span><span class="n">atomName</span><span class="p">,</span><span class="n">lipid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the universal atom name corresponding the simulation specific ``atomName`` of a ``lipid`` in a simulation defined by the ``system``.</span>
+
+<span class="sd">    :param system: system dictionary</span>
+<span class="sd">    :param atomName: simulation specific atomname</span>
+<span class="sd">    :param lipid: universal lipid name</span>
+
+<span class="sd">    :return: universal atomname (string)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">mappingFile</span> <span class="o">=</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">lipid</span><span class="p">][</span><span class="s1">&#39;MAPPING&#39;</span><span class="p">]</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mapping file was not found&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">mappingDict</span> <span class="o">=</span> <span class="n">loadMappingFile</span><span class="p">(</span><span class="n">mappingFile</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">universalName</span> <span class="ow">in</span> <span class="n">mappingDict</span><span class="p">:</span>
+        <span class="n">simName</span> <span class="o">=</span> <span class="n">mappingDict</span><span class="p">[</span><span class="n">universalName</span><span class="p">][</span><span class="s1">&#39;ATOMNAME&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">simName</span> <span class="o">==</span> <span class="n">atomName</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">universalName</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Atom was not found&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
 
 
 <div class="viewcode-block" id="ShowTable">
@@ -1648,7 +1776,8 @@
                 <span class="n">rnm</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">resname</span><span class="p">,</span> <span class="n">atA</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">atAname</span><span class="p">,</span> <span class="n">atB</span><span class="o">=</span><span class="n">op</span><span class="o">.</span><span class="n">atBname</span>
             <span class="p">)</span>
         <span class="p">)</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;residue&quot;</span><span class="p">)</span>
-        <span class="c1"># print(op.resname + &quot; &quot; + op.atAname + &quot; &quot; + op.atBname)</span>
+        <span class="c1">#print(op.resname + &quot; &quot; + op.atAname + &quot; &quot; + op.atBname)</span>
+
         <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">:</span>
             <span class="c1"># check if we have only 2 atoms (A &amp; B) selected</span>
             <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">n_atoms</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
@@ -1668,6 +1797,7 @@
     <span class="c1"># go through trajectory frame-by-frame</span>
     <span class="n">Nframes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">trajectory</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">ordPars</span><span class="p">:</span>
+        <span class="c1">#print(op.selection)</span>
         <span class="n">Nres</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">selection</span><span class="p">)</span>
         <span class="n">op</span><span class="o">.</span><span class="n">traj</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Nres</span>
 
@@ -1700,6 +1830,7 @@
     <span class="n">regexp3_C</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;M_C[0-9]_M&quot;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">mapping_key</span> <span class="ow">in</span> <span class="n">mapping_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="c1">#print(mapping_key)</span>
         <span class="k">if</span> <span class="p">(</span>
             <span class="n">regexp1_C</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">mapping_key</span><span class="p">)</span>
             <span class="ow">or</span> <span class="n">regexp2_C</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">mapping_key</span><span class="p">)</span>
@@ -1710,7 +1841,6 @@
                 <span class="n">resname</span> <span class="o">=</span> <span class="n">mapping_dict</span><span class="p">[</span><span class="n">mapping_key</span><span class="p">][</span><span class="s2">&quot;RESIDUE&quot;</span><span class="p">]</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="k">pass</span>
-            <span class="c1">#            print(atomC)</span>
             <span class="n">atomH</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">elif</span> <span class="p">(</span>
             <span class="n">regexp1_H</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">mapping_key</span><span class="p">)</span>
@@ -1722,10 +1852,14 @@
             <span class="n">atomC</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">atomH</span> <span class="o">=</span> <span class="p">[]</span>
 
+        <span class="c1">#print(atomC)</span>
+        <span class="c1">#print(atomH)</span>
+
         <span class="k">if</span> <span class="n">atomH</span><span class="p">:</span>
+            <span class="c1">#print(resname, atomC[1], atomH[1], atomC[0], atomH[0])</span>
             <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">atomC</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">atomH</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">atomC</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">atomH</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-            <span class="c1">#               print(resname + &quot; &quot; + atomH[1])</span>
             <span class="n">op</span> <span class="o">=</span> <span class="n">OrderParameter</span><span class="p">(</span><span class="n">resname</span><span class="p">,</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="c1">#print(op.avg,op.resname,op.atAname,op.atBname,op.selection)</span>
             <span class="n">ordPars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ordPars</span>
 
@@ -1794,35 +1928,108 @@
     <span class="k">return</span> <span class="n">angle</span>
 
 
-<div class="viewcode-block" id="calc_z_dim">
-<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.calc_z_dim">[docs]</a>
 <span class="k">def</span> <span class="nf">calc_z_dim</span><span class="p">(</span><span class="n">gro</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the simulation box dimension in z-direction</span>
+<span class="sd">    :meta private:</span>
+<span class="sd">    Returns the simulation box dimension in z-direction from coordinate file.</span>
 <span class="sd">    </span>
 <span class="sd">    :param gro: coordinate in ``gro``, ``pdb`` or corresponding format.</span>
-<span class="sd">    </span>
+
+<span class="sd">    :return: size of box z-direction.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">gro</span><span class="p">)</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">dimensions</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">z</span></div>
+    <span class="k">return</span> <span class="n">z</span>
+
+<div class="viewcode-block" id="system2MDanalysisUniverse">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.system2MDanalysisUniverse">[docs]</a>
+<span class="k">def</span> <span class="nf">system2MDanalysisUniverse</span><span class="p">(</span><span class="n">system</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes the ``system`` dictionary as an input, downloads the required files to the NMRlipids databank directory and retuns MDAnalysis universe corressponding the ``system``.</span>
+
+<span class="sd">    :param system: NMRlipids databank dictionary describing the simulation.</span>
+
+<span class="sd">    :return: MDAnalysis universe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+    <span class="n">systemPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/../../Data/Simulations/&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> 
+    <span class="n">doi</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DOI&#39;</span><span class="p">)</span>
+    <span class="n">trj</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TRJ&#39;</span><span class="p">)</span>
+    <span class="n">trj_name</span> <span class="o">=</span> <span class="n">systemPath</span> <span class="o">+</span> <span class="n">system</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TRJ&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">trj_url</span> <span class="o">=</span> <span class="n">download_link</span><span class="p">(</span><span class="n">doi</span><span class="p">,</span> <span class="n">trj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">software</span><span class="o">=</span><span class="n">system</span><span class="p">[</span><span class="s1">&#39;SOFTWARE&#39;</span><span class="p">]</span>
+    <span class="c1">#print(trj_name,tpr_name)</span>
+                            
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">trj_name</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Downloading trajectory with the size of &#39;</span><span class="p">,</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;TRAJECTORY_SIZE&#39;</span><span class="p">],</span> <span class="s1">&#39; to &#39;</span><span class="p">,</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">trj_url</span><span class="p">,</span> <span class="n">trj_name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;gromacs&#39;</span> <span class="ow">in</span> <span class="n">software</span><span class="p">:</span> 
+        <span class="n">tpr</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TPR&#39;</span><span class="p">)</span>
+        <span class="n">tpr_name</span> <span class="o">=</span> <span class="n">systemPath</span> <span class="o">+</span> <span class="n">system</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TPR&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tpr_url</span> <span class="o">=</span> <span class="n">download_link</span><span class="p">(</span><span class="n">doi</span><span class="p">,</span> <span class="n">tpr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">tpr_name</span><span class="p">)):</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">tpr_url</span><span class="p">,</span> <span class="n">tpr_name</span><span class="p">)</span>
+            
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">tpr_name</span><span class="p">,</span> <span class="n">trj_name</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">conf</span> <span class="o">=</span> <span class="n">systemPath</span> <span class="o">+</span> <span class="s1">&#39;/conf.gro&#39;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">tpr_name</span><span class="p">)):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generating conf.gro because MDAnalysis cannot read tpr version&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s1">&#39;WARNINGS&#39;</span> <span class="ow">in</span> <span class="n">system</span> <span class="ow">and</span> <span class="s1">&#39;GROMACS_VERSION&#39;</span> <span class="ow">in</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;WARNINGS&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;WARNINGS&#39;</span><span class="p">][</span><span class="s1">&#39;GROMACS_VERSION&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;gromacs3&#39;</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;echo System | editconf -f &#39;</span><span class="o">+</span> <span class="n">tpr_name</span> <span class="o">+</span> <span class="s1">&#39; -o &#39;</span> <span class="o">+</span> <span class="n">conf</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;echo System | gmx trjconv -s &#39;</span><span class="o">+</span> <span class="n">tpr_name</span> <span class="o">+</span> <span class="s1">&#39; -f &#39;</span><span class="o">+</span> <span class="n">trj_name</span> <span class="o">+</span> <span class="s1">&#39; -dump 0 -o &#39;</span> <span class="o">+</span> <span class="n">conf</span><span class="p">)</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">trj_name</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="s1">&#39;openMM&#39;</span> <span class="ow">or</span> <span class="s1">&#39;NAMD&#39;</span> <span class="ow">in</span> <span class="n">software</span><span class="p">:</span>
+        <span class="n">pdb</span> <span class="o">=</span> <span class="n">system</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PDB&#39;</span><span class="p">)</span>
+        <span class="n">pdb_name</span> <span class="o">=</span> <span class="n">systemPath</span> <span class="o">+</span> <span class="n">system</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;PDB&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">pdb_url</span> <span class="o">=</span> <span class="n">download_link</span><span class="p">(</span><span class="n">doi</span><span class="p">,</span> <span class="n">pdb</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pdb_name</span><span class="p">)):</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">pdb_url</span><span class="p">,</span> <span class="n">pdb_name</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">pdb_name</span><span class="p">,</span> <span class="n">trj_name</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Other than gromacs, openMM or NAMD are yet to be implemented.&#39;</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="kc">None</span>
+        
+    <span class="k">return</span> <span class="n">u</span></div>
 
 
 
 <div class="viewcode-block" id="read_trj_PN_angles">
 <a class="viewcode-back" href="../databankLibrary.html#databankLibrary.read_trj_PN_angles">[docs]</a>
-<span class="k">def</span> <span class="nf">read_trj_PN_angles</span><span class="p">(</span><span class="n">molname</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">top_fname</span><span class="p">,</span> <span class="n">traj_fname</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">read_trj_PN_angles</span><span class="p">(</span><span class="n">molname</span><span class="p">,</span> <span class="n">atom1</span><span class="p">,</span> <span class="n">atom2</span><span class="p">,</span> <span class="n">MDAuniverse</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Calculates the P-N vector angles with respect to membrane normal. More documentation should be added.</span>
+<span class="sd">    Calculates the P-N vector angles with respect to membrane normal from the simulation defined by the MDAnalysis universe. </span>
+
+<span class="sd">    :param molename: residue name of the molecule for which the P-N vector angle will be calculated</span>
+<span class="sd">    :param atom1: name of the P atom in the simulation</span>
+<span class="sd">    :param atom2: name of the N atom in the simulation</span>
+<span class="sd">    :param MDAuniverse: MDAnalysis universe of the simulation to be analyzed</span>
+
+<span class="sd">    :return: list where the first element are the angles of all molecules as a function of time, second element contains time averages for each molecule, third element contains the average angle over time and molecules, and fourth element is the error of the mean calculated over molecules. </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">mol</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="n">top_fname</span><span class="p">,</span> <span class="n">traj_fname</span><span class="p">)</span>
+
+    <span class="c1">#systemPath = os.path.dirname(os.path.realpath(__file__)) + system[&#39;path&#39;] </span>
+    
+    <span class="c1">#if &#39;gromacs&#39; in system[&#39;SOFTWARE&#39;]:</span>
+    <span class="c1">#    print(systemPath, system[&#39;TPR&#39;][0][0])</span>
+    <span class="c1">#    top_fname = systemPath + system[&#39;TPR&#39;][0][0]</span>
+    <span class="c1">#else:</span>
+    <span class="c1">#    top_fname = system[&#39;PDB&#39;]</span>
+    <span class="c1">#traj_fname =  systemPath +  system[&#39;TRJ&#39;][0][0]</span>
+
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">MDAuniverse</span> <span class="c1">#mda.Universe(top_fname, traj_fname)</span>
 
     <span class="n">selection</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span>
-        <span class="s2">&quot;resname &quot;</span> <span class="o">+</span> <span class="n">molname</span> <span class="o">+</span> <span class="s2">&quot; and (name &quot;</span> <span class="o">+</span> <span class="n">atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;resname &quot;</span> <span class="o">+</span> <span class="n">molname</span> <span class="o">+</span> <span class="s2">&quot; and (name &quot;</span> <span class="o">+</span> <span class="n">atoms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resname &quot;</span> <span class="o">+</span> <span class="n">molname</span> <span class="o">+</span> <span class="s2">&quot; and (name &quot;</span> <span class="o">+</span> <span class="n">atom1</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resname &quot;</span> <span class="o">+</span> <span class="n">molname</span> <span class="o">+</span> <span class="s2">&quot; and (name &quot;</span> <span class="o">+</span> <span class="n">atom2</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span>
     <span class="p">)</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;residue&quot;</span><span class="p">)</span>
     <span class="n">com</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span>
-        <span class="s2">&quot;resname &quot;</span> <span class="o">+</span> <span class="n">molname</span> <span class="o">+</span> <span class="s2">&quot; and (name &quot;</span> <span class="o">+</span> <span class="n">atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; or name &quot;</span> <span class="o">+</span> <span class="n">atoms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+        <span class="s2">&quot;resname &quot;</span> <span class="o">+</span> <span class="n">molname</span> <span class="o">+</span> <span class="s2">&quot; and (name &quot;</span> <span class="o">+</span> <span class="n">atom1</span> <span class="o">+</span> <span class="s2">&quot; or name &quot;</span> <span class="o">+</span> <span class="n">atom2</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
     <span class="p">)</span><span class="o">.</span><span class="n">center_of_mass</span><span class="p">()</span>
 
     <span class="n">Nres</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
@@ -1897,7 +2104,7 @@
         <span class="n">sub_dir1</span> <span class="o">=</span> <span class="n">sim_hashes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TPR&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
         <span class="n">sub_dir2</span> <span class="o">=</span> <span class="n">sim_hashes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TPR&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">sub_dir3</span> <span class="o">=</span> <span class="n">sim_hashes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TRJ&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">sim</span><span class="p">[</span><span class="s2">&quot;SOFTWARE&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;openMM&quot;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">sim</span><span class="p">[</span><span class="s2">&quot;SOFTWARE&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;openMM&quot;</span> <span class="ow">or</span> <span class="n">sim</span><span class="p">[</span><span class="s2">&quot;SOFTWARE&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;NAMD&quot;</span><span class="p">:</span>
         <span class="n">head_dir</span> <span class="o">=</span> <span class="n">sim_hashes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TRJ&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
         <span class="n">sub_dir1</span> <span class="o">=</span> <span class="n">sim_hashes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TRJ&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
         <span class="n">sub_dir2</span> <span class="o">=</span> <span class="n">sim_hashes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TRJ&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
@@ -1934,10 +2141,10 @@
         <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
 
-<div class="viewcode-block" id="resolve_doi_url">
-<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.resolve_doi_url">[docs]</a>
 <span class="k">def</span> <span class="nf">resolve_doi_url</span><span class="p">(</span><span class="n">doi</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">validate_uri</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns full doi link of given ressource, also checks if URL is valid.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :meta private:</span>
+<span class="sd">    Returns full doi link of given ressource, also checks if URL is valid.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        doi (str): [doi] part from config</span>
@@ -1951,14 +2158,13 @@
     <span class="k">if</span> <span class="n">validate_uri</span><span class="p">:</span>
         <span class="n">socket</span><span class="o">.</span><span class="n">setdefaulttimeout</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># seconds</span>
         <span class="n">_</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">res</span></div>
+    <span class="k">return</span> <span class="n">res</span>
 
 
-
-<div class="viewcode-block" id="resolve_download_file_url">
-<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.resolve_download_file_url">[docs]</a>
 <span class="k">def</span> <span class="nf">resolve_download_file_url</span><span class="p">(</span><span class="n">doi</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fi_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">validate_uri</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resolve file URI from supported DOI with given filename</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :meta private:</span>
+<span class="sd">    Resolve file URI from supported DOI with given filename</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        doi (str): DOI string</span>
@@ -1985,16 +2191,15 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
             <span class="s2">&quot;Repository not validated. Please upload the data for example to zenodo.org&quot;</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="download_resource_from_uri">
-<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.download_resource_from_uri">[docs]</a>
 <span class="k">def</span> <span class="nf">download_resource_from_uri</span><span class="p">(</span>
     <span class="n">uri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dest</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">override_if_exists</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Download file resource [from uri] to given file destination using urllib</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :meta private:</span>
+<span class="sd">    Download file resource [from uri] to given file destination using urllib</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        uri (str): file URL</span>
@@ -2046,24 +2251,23 @@
     <span class="n">size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">url_size</span> <span class="o">!=</span> <span class="n">size</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;downloaded filsize mismatch (</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">url_size</span><span class="si">}</span><span class="s2"> B)&quot;</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;downloaded filsize mismatch (</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">url_size</span><span class="si">}</span><span class="s2"> B)&quot;</span><span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="YamlBadConfigException">
-<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.YamlBadConfigException">[docs]</a>
 <span class="k">class</span> <span class="nc">YamlBadConfigException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom Exception class for parsing the yaml configuration&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :meta private:</span>
+<span class="sd">    Custom Exception class for parsing the yaml configuration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="ne">Exception</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 
-
-<div class="viewcode-block" id="parse_valid_config_settings">
-<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.parse_valid_config_settings">[docs]</a>
 <span class="k">def</span> <span class="nf">parse_valid_config_settings</span><span class="p">(</span><span class="n">info_yaml</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses, validates and updates dict entries from yaml configuration file.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :meta private:</span>
+<span class="sd">    Parses, validates and updates dict entries from yaml configuration file.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        info_yaml (dict): info.yaml of database to add</span>
@@ -2209,8 +2413,134 @@
         <span class="sa">f</span><span class="s2">&quot;found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files_tbd</span><span class="p">)</span><span class="si">}</span><span class="s2"> ressources to download: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">files_tbd</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">sim</span><span class="p">,</span> <span class="n">files_tbd</span></div>
+    <span class="k">return</span> <span class="n">sim</span><span class="p">,</span> <span class="n">files_tbd</span>
 
+<div class="viewcode-block" id="calcArea">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.calcArea">[docs]</a>
+<span class="k">def</span> <span class="nf">calcArea</span><span class="p">(</span><span class="n">system</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns area of the calculated based on the area per lipid stored in the databank.</span>
+
+<span class="sd">    :param system: a system dictionary</span>
+
+<span class="sd">    :return: area of the system (Å^2)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">APL</span> <span class="o">=</span> <span class="n">CalcAreaPerMolecule</span><span class="p">(</span><span class="n">system</span><span class="p">)</span>
+    <span class="n">Nlipid</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">lipids_dict</span><span class="p">:</span>
+            <span class="n">Nlipid</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">molecule</span><span class="p">][</span><span class="s1">&#39;COUNT&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Nlipid</span><span class="p">,</span> <span class="n">APL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Nlipid</span><span class="o">*</span><span class="n">APL</span><span class="o">/</span><span class="mi">2</span></div>
+
+
+<div class="viewcode-block" id="GetFormFactorMin">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.GetFormFactorMin">[docs]</a>
+<span class="k">def</span> <span class="nf">GetFormFactorMin</span><span class="p">(</span><span class="n">system</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return list of minima of form factor of ``system``.</span>
+
+<span class="sd">    :param system: a system dictionary</span>
+
+<span class="sd">    :return: list of form factor minima</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">FormFactorPath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/../../Data/Simulations/&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;FormFactor.json&#39;</span>
+    <span class="c1">#try:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">FormFactorPath</span><span class="p">)</span>
+    <span class="n">FormFactor</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">min</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">iprev</span> <span class="o">=</span> <span class="n">FormFactor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">iprevD</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">minX</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">FormFactor</span><span class="p">:</span>
+        <span class="n">iD</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">iprev</span>
+        <span class="k">if</span> <span class="n">iD</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">iprevD</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
+            <span class="n">minX</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">iprevD</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">iprev</span>
+        <span class="n">iprev</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        
+    <span class="k">return</span><span class="p">(</span><span class="n">minX</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="averageOrderParameters">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.averageOrderParameters">[docs]</a>
+<span class="k">def</span> <span class="nf">averageOrderParameters</span><span class="p">(</span><span class="n">system</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns average order paramaters of sn-1 and sn-2 acyl chains based on universal atom names. The names starting with M_G1C will be assigned to sn-1 and names starting M_G2C to sn-2. </span>
+
+<span class="sd">    :parameters system: a system dictionary</span>
+
+<span class="sd">    :return: average of sn-1 and sn-2 order parameters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1">#DataBankPath = &#39;../../Databank/Data/&#39;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/../../Data/Simulations/&#39;</span> <span class="o">+</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
+    <span class="c1">#DataBankPath + &#39;Simulations/&#39; +system[&#39;path&#39;]</span>
+    
+    <span class="n">sn1sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sn1count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sn2sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">sn2count</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">for</span> <span class="n">lipid</span> <span class="ow">in</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">lipid</span> <span class="ow">in</span> <span class="n">lipids_dict</span> <span class="ow">and</span> <span class="ow">not</span> <span class="s1">&#39;CHOL&#39;</span> <span class="ow">in</span> <span class="n">lipid</span><span class="p">:</span>
+            <span class="n">OPpathSIM</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="n">lipid</span> <span class="o">+</span> <span class="s1">&#39;OrderParameters.json&#39;</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OPpathSIM</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+                <span class="n">OPsim</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span>
+    
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">OPsim</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;M_G1C&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                    <span class="n">sn1sum</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">OPsim</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">sn1count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="s1">&#39;M_G2C&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                    <span class="n">sn2sum</span> <span class="o">+=</span> <span class="nb">float</span><span class="p">(</span><span class="n">OPsim</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">sn2count</span> <span class="o">+=</span> <span class="mi">1</span>
+                    
+    <span class="k">return</span> <span class="n">sn1sum</span><span class="o">/</span><span class="n">sn1count</span><span class="p">,</span> <span class="n">sn2sum</span><span class="o">/</span><span class="n">sn2count</span></div>
+
+
+<div class="viewcode-block" id="calcLipidFraction">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.calcLipidFraction">[docs]</a>
+<span class="k">def</span> <span class="nf">calcLipidFraction</span><span class="p">(</span><span class="n">system</span><span class="p">,</span> <span class="n">lipid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the number fraction of ``lipid`` with respect to total number of lipids.</span>
+
+<span class="sd">    :param system: a system dictionary</span>
+<span class="sd">    :param lipid: universal molecule name of lipid</span>
+
+<span class="sd">    :return: number fraction of ``lipid`` with respect total number of lipids</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">NlipidTOT</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">lipids_dict</span><span class="p">:</span>
+            <span class="n">NlipidTOT</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">molecule</span><span class="p">][</span><span class="s1">&#39;COUNT&#39;</span><span class="p">])</span>
+    
+    <span class="n">Nlipid</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">lipid</span> <span class="ow">in</span> <span class="n">molecule</span><span class="p">:</span>
+            <span class="n">Nlipid</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">molecule</span><span class="p">][</span><span class="s1">&#39;COUNT&#39;</span><span class="p">])</span>
+            
+    <span class="k">return</span> <span class="n">Nlipid</span><span class="o">/</span><span class="n">NlipidTOT</span></div>
+
+
+
+<div class="viewcode-block" id="getHydrationLevel">
+<a class="viewcode-back" href="../databankLibrary.html#databankLibrary.getHydrationLevel">[docs]</a>
+<span class="k">def</span> <span class="nf">getHydrationLevel</span><span class="p">(</span><span class="n">system</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns hydration level of the system, i.e., number of water molecules divided by number of lipid molecules.</span>
+
+<span class="sd">    :param system: a system dictionary</span>
+
+<span class="sd">    :return: number of water molecules divided by number of lipid molecules</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Nlipid</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">molecule</span> <span class="ow">in</span> <span class="n">lipids_dict</span><span class="p">:</span>
+            <span class="n">Nlipid</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="n">molecule</span><span class="p">][</span><span class="s1">&#39;COUNT&#39;</span><span class="p">])</span>
+    <span class="n">Nwater</span> <span class="o">=</span> <span class="n">system</span><span class="p">[</span><span class="s1">&#39;COMPOSITION&#39;</span><span class="p">][</span><span class="s1">&#39;SOL&#39;</span><span class="p">][</span><span class="s1">&#39;COUNT&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Nwater</span><span class="o">/</span><span class="n">Nlipid</span></div>
 
 </pre></div>
 
