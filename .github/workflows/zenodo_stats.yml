@@ -28,7 +28,7 @@ jobs:
     - name: Zenodo stats
       run: |
         ls -la
-        ./.github/workflow/zenodo_stats.sh
+        .scripts/zenodo_stats.sh
    
     # Commits files to repository
     - name: Commit changes
