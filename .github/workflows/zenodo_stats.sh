@@ -23,7 +23,7 @@ find . -name "NMRLipidsDB/README.yaml" | while read -r file; do
     fi
 done
 
-
+mkdir .traffic
 stats_output_file="./traffic/zenodo_stats.csv"
 
 if [ ! -f "$stats_output_file" ]; then
