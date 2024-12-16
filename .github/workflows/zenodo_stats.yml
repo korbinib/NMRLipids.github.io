@@ -27,8 +27,8 @@ jobs:
     # Get zenodo DOIs and query stats from API
     - name: Zenodo stats
       run: |
+        .scripts/zenodo_stats.sh;
         ls -la
-        .scripts/zenodo_stats.sh
    
     # Commits files to repository
     - name: Commit changes
