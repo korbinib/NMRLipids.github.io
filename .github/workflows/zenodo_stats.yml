@@ -13,9 +13,13 @@ jobs:
           working-directory: .
 
     # Steps represent a sequence of tasks that will be executed as part of the job
+    
     steps:
+    - name: Check out repo
+      uses: actions/checkout@v4 
+      
     - name: Check out NMRLipids/Databank
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: NMRLipids/Databank
         path: NMRLipidsDB
@@ -23,7 +27,7 @@ jobs:
     # Get zenodo DOIs and query stats from API
     - name: Zenodo stats
       run: |
-        .github/workflow/zenodo_stats.sh
+        ./.github/workflow/zenodo_stats.sh
     # Commits files to repository
     - name: Commit changes
       uses: EndBug/add-and-commit@v4
