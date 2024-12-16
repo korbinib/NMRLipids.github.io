@@ -11,7 +11,7 @@ date=$(date --iso-8601)
 
 
 # Find all README.yml files and extract the zenodo DOI key
-find . -name "NMRLipidsDB/README.yaml" | while read -r file; do
+find NMRLipidsDB -name "README.yaml" | while read -r file; do
     echo "Processing $file"
 
     doi=$(grep -o 'DOI: .*10.5281/zenodo.*' "$file" | awk '{print $2}')
@@ -23,11 +23,11 @@ find . -name "NMRLipidsDB/README.yaml" | while read -r file; do
     fi
 done
 
-
-stats_output_file="./traffic/zenodo_stats.csv"
+mkdir -p .traffic
+stats_output_file=".traffic/zenodo_stats.csv"
 
 if [ ! -f "$stats_output_file" ]; then
-    echo "doi,date,downloads,unique_downloads,views,unique_views,version_downloads,version_unique_downloads,version_views,version_unique_views" > "$OUTPUT_FILE"
+    echo "doi,date,downloads,unique_downloads,views,unique_views,version_downloads,version_unique_downloads,version_views,version_unique_views" > "$stats_output_file"
 fi
 
 mapfile -t dois_array < zenodo_dois.txt
@@ -62,4 +62,3 @@ for doi in "${dois_array[@]}"; do
         echo "Failed to fetch data for DOI: $doi"
     fi
 done
-
