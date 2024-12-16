@@ -35,4 +35,4 @@ jobs:
       with:
         author_name: GitHub action
         message: "Zenodo stats"
-        add: '.traffic/zenodo_stats.csv"
+        add: '.traffic/zenodo_stats.csv'
