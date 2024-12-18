@@ -23,8 +23,8 @@ find NMRLipidsDB -name "README.yaml" | while read -r file; do
     fi
 done
 
-mkdir -p .traffic
-stats_output_file=".traffic/zenodo_stats.csv"
+mkdir -p traffic
+stats_output_file="traffic/zenodo_stats.csv"
 
 if [ ! -f "$stats_output_file" ]; then
     echo "doi,date,downloads,unique_downloads,views,unique_views,version_downloads,version_unique_downloads,version_views,version_unique_views" > "$stats_output_file"
